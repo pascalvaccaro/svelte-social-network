@@ -30,7 +30,8 @@
 </script>
 
 <div class="wrapper">
-	<form on:submit|preventDefault={() => updateProfile(profile)}>
+	<form class="left" on:submit|preventDefault={() => updateProfile(profile)}>
+		<h1>Profil</h1>
 		{#each fields as field}
 			<label for="">
 				<p>{field.label}</p>
@@ -46,8 +47,8 @@
 			<button type="submit">Modifier mon profil</button>
 		{/if}
 	</form>
-	<h2>Les dernières publication de {profile.firstname} {profile.lastname}</h2>
-	<div class="posts">
+	<div class="right">
+		<h1>Posts</h1>
 		{#each $posts as post}
 			{#if post.userId == profile._id}
 				<ReadPost {post} />
@@ -59,15 +60,29 @@
 <style lang="scss">
 	.wrapper {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		width: 100%;
-		align-items: center;
-		gap: 1rem;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 2rem;
 
+		h1 {
+			text-align: center;
+			width: 100%;
+		}
+
+		.left,
+		.right {
+			box-sizing: border-box;
+			width: 45%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
 		form {
-			width: 420px !important;
+			width: 420px;
 			gap: 1rem;
-			flex-grow: 1;
 
 			label p {
 				font-size: 0.6rem;
@@ -75,12 +90,6 @@
 				padding: 0;
 				align-items: flex-start;
 			}
-		}
-		h2 {
-			margin: 1rem 0;
-		}
-		.posts {
-			padding: 0 2rem;
 		}
 	}
 </style>
