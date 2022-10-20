@@ -47,15 +47,11 @@
 			{/if}
 		</ul>
 	{/if}
-  {#if post.comments?.length || $isLoggedIn}
-	<button
-		class="link"
-		style="text-align: right"
-		on:click={() => (showComments = !showComments)}
-	>
-		{showComments ? 'Masquer' : 'Voir'} les commentaires
-	</button>
-  {/if}
+	{#if post.comments?.length || $isLoggedIn}
+		<button class="link" on:click={() => (showComments = !showComments)}>
+			{showComments ? 'Masquer' : 'Voir'} les commentaires
+		</button>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -65,6 +61,9 @@
 		gap: 0.85rem;
 		flex-direction: column;
 		border: 1px solid var(--color-border);
+	}
+	button.link {
+		text-align: right;
 	}
 
 	.comments {

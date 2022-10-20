@@ -28,7 +28,7 @@
 	</form>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 	form {
 		gap: 1rem;
 
